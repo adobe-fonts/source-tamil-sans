@@ -1,0 +1,298 @@
+#--------------------------------------
+@LETTERS_MAJUSCULE_LATIN = [A B C D E F G H I J K L M N O P Q R S T U V W X Y Z AE Lslash Oslash OE Eth Thorn];
+
+@FIGURES_LINING_TABULAR = [zero one two three four five six seven eight nine rupeeindian]; #taZero taOne taTwo taThree taFour taFive taSix taSeven taEight taNine];
+@FIGURES_LINING_PROPORTIONAL = [zero.pnum one.pnum two.pnum three.pnum four.pnum five.pnum six.pnum seven.pnum eight.pnum nine.pnum rupeeindian.pnum]; #taZero.pnum taOne.pnum taTwo.pnum taThree.pnum taFour.pnum taFive.pnum taSix.pnum taSeven.pnum taEight.pnum taNine.pnum];
+
+@SORTS_DFLT = [exclam question quoteleft quoteright quotedblleft quotedblright asterisk];
+@SORTS_LATN = [exclam.latn question.latn quoteleft.latn quoteright.latn quotedblleft.latn quotedblright.latn asterisk.latn];
+
+@MARKS_CMB_LAT = [gravecmb acutecmb circumflexcmb tildecmb dieresiscmb macroncmb brevecmb ringcmb dotaccentcmb caroncmb candrabinducmb];
+@MARKS_CMB_LAT_CASE = [gravecmb.cap acutecmb.cap circumflexcmb.cap tildecmb.cap dieresiscmb.cap macroncmb.cap brevecmb.cap ringcmb.cap dotaccentcmb.cap caroncmb.cap candrabinducmb.cap];
+
+#--------------------------------------
+languagesystem DFLT dflt;
+languagesystem tml2 dflt;
+languagesystem taml dflt;
+languagesystem latn dflt;
+
+#--------------------------------------
+
+feature ccmp {
+
+lookup COMPOSE {
+	sub G macronbelowcmb H macronbelowcmb by GHmacronbelow;
+	sub G macrondoublebelowcmb H by GHmacronbelow;
+	sub G macronbelowcmb h macronbelowcmb by Ghmacronbelow;
+	sub G macronbelowcmb hlinebelow by Ghmacronbelow;
+	sub G macrondoublebelowcmb h by Ghmacronbelow;
+	sub g macronbelowcmb h macronbelowcmb by ghmacronbelow;
+	sub g macronbelowcmb hlinebelow by ghmacronbelow;
+	sub g macrondoublebelowcmb h by ghmacronbelow;
+	sub K macronbelowcmb H macronbelowcmb by KHmacronbelow;
+	sub Klinebelow H macronbelowcmb by KHmacronbelow;
+	sub K macrondoublebelowcmb H by KHmacronbelow;
+	sub K macronbelowcmb h macronbelowcmb by Khmacronbelow;
+	sub Klinebelow hlinebelow by Khmacronbelow;
+	sub K macrondoublebelowcmb h by Khmacronbelow;
+	sub k macronbelowcmb h macronbelowcmb by khmacronbelow;
+	sub klinebelow hlinebelow by khmacronbelow;
+	sub k macrondoublebelowcmb h by khmacronbelow;
+} COMPOSE; 
+
+lookup MAJUCSULE_ACCENTS_CMB_CONTEXT { # substitutes combining marks for miniscules with forms for majuscules
+	sub @LETTERS_MAJUSCULE_LATIN @MARKS_CMB_LAT' by @MARKS_CMB_LAT_CASE;
+} MAJUCSULE_ACCENTS_CMB_CONTEXT;
+
+} ccmp;
+
+
+#--------------------------------------
+feature locl { # Localized Forms
+
+script latn;
+	language dflt;
+		sub @SORTS_DFLT by @SORTS_LATN;
+} locl;
+
+
+#--------------------------------------
+#feature nukt { # Nukta Forms
+#} nukt;
+
+
+#--------------------------------------
+feature akhn { # Akhands
+
+	sub taKa taVirama taSsa by taKSsa;
+
+} akhn;
+
+
+#--------------------------------------
+#feature rphf { # Reph
+#} rphf;
+
+
+#--------------------------------------
+#feature blwf { # Below-Base Forms
+#} blwf;
+
+
+#--------------------------------------
+#feature half { # Half Forms
+#} half;
+
+
+#--------------------------------------
+#feature pstf { # Post-Base Forms
+#} pstf;
+
+
+#--------------------------------------
+#feature cjct { # Conjuncts
+#} cjct;
+
+
+#--------------------------------------
+#feature pres { # Pre-base Substitutions
+# NOTE: This substitution must be written to match 
+# the glyph sequence after the reordering of the 
+# underlying characters has occurred.
+
+#} pres;
+
+
+#--------------------------------------
+feature abvs { # Above-Base Substitutions
+
+lookup TA_ABVS_LIGATURES {
+	sub taKa taIsign by taKI;
+	sub taKa taIisign by taKIi;
+	sub taKSsa taIsign by taKSsI;
+	sub taKSsa taIisign by taKSsIi;
+	sub taNga taIsign by taNgI;
+	sub taNga taIisign by taNgIi;
+	sub taCa taIsign by taCI;
+	sub taCa taIisign by taCIi;
+	sub taJa taIsign by taJI;
+	sub taJa taIisign by taJIi;
+	sub taTta taIsign by taTtI;
+	sub taTta taIisign by taTtIi;
+	sub taTa taIsign by taTI;
+	sub taTa taIisign by taTIi;
+	sub taMa taIsign by taMI;
+	sub taMa taIisign by taMIi;
+	sub taRra taIsign by taRrI;
+	sub taRra taIisign by taRrIi;
+	sub taLa taIsign by taLI;
+	sub taLa taIisign by taLIi;
+	sub taLlla taIsign by taLllI;
+	sub taLlla taIisign by taLllIi;
+	sub taSsa taIsign by taSsI;
+	sub taSsa taIisign by taSsIi;
+	sub taSa taIsign by taSI;
+	sub taSa taIisign by taSIi;
+	sub taSa taVirama taRa taIisign by taSRIi;
+	sub taHa taIsign by taHI;
+	sub taHa taIisign by taHIi;
+} TA_ABVS_LIGATURES;
+
+lookup TA_ABVS_CXT_MATRAS {
+	sub [taPa taYa taVa] taIsign' by taIsign.a;
+	sub [taPa taYa taVa] taIisign' by taIisign.a;
+} TA_ABVS_CXT_MATRAS;
+
+} abvs;
+
+
+#--------------------------------------
+feature blws { # Below-Base Substitutions
+#
+	sub taKa taUsign by taKU;
+	sub taKa taUusign by taKUu;
+	sub taNga taUsign by taNgU;
+	sub taNga taUusign by taNgUu;
+	sub taCa taUsign by taCU;
+	sub taCa taUusign by taCUu;
+	sub taNya taUsign by taNyU;
+	sub taNya taUusign by taNyUu;
+	sub taTta taUsign by taTtU;
+	sub taTta taUusign by taTtUu;
+	sub taNna taUsign by taNnU;
+	sub taNna taUusign by taNnUu;
+	sub taTa taUsign by taTU;
+	sub taTa taUusign by taTUu;
+	sub taNa taUsign by taNU;
+	sub taNa taUusign by taNUu;
+	sub taNnna taUsign by taNnnU;
+	sub taNnna taUusign by taNnnUu;
+	sub taPa taUsign by taPU;
+	sub taPa taUusign by taPUu;
+	sub taMa taUsign by taMU;
+	sub taMa taUusign by taMUu;
+	sub taYa taUsign by taYU;
+	sub taYa taUusign by taYUu;
+	sub taRa taUsign by taRU;
+	sub taRa taUusign by taRUu;
+	sub taRra taUsign by taRrU;
+	sub taRra taUusign by taRrUu;
+	sub taLa taUsign by taLU;
+	sub taLa taUusign by taLUu;
+	sub taLla taUsign by taLlU;
+	sub taLla taUusign by taLlUu;
+	sub taLlla taUsign by taLllU;
+	sub taLlla taUusign by taLllUu;
+	sub taVa taUsign by taVU;
+	sub taVa taUusign by taVUu;
+#
+} blws;
+
+
+#--------------------------------------
+feature psts { # Post-base Substitutions
+
+lookup TA_PSTS_CXT {
+	sub [taSsa taKSsa] taUsign' by taUsign.a;
+	sub [taSsa taKSsa] taUusign' by taUusign.a;
+} TA_PSTS_CXT;
+
+} psts;
+
+
+#--------------------------------------
+#feature calt {
+#} calt;
+
+
+#--------------------------------------
+feature pnum { # Proportional Figures
+	sub @FIGURES_LINING_TABULAR by @FIGURES_LINING_PROPORTIONAL;
+} pnum;
+
+
+#--------------------------------------
+feature tnum { # Tabular Figures
+	sub @FIGURES_LINING_PROPORTIONAL by @FIGURES_LINING_TABULAR;
+} tnum;
+
+
+#--------------------------------------
+feature liga {
+
+script latn;
+	language dflt;
+		sub f f b by f_f_b;
+		sub f f h by f_f_h;
+		sub f f i by f_f_i;
+		sub f f j by f_f_j;
+		sub f f k by f_f_k;
+		sub f f l by f_f_l;
+		sub f f t by f_f_t;
+		sub T h by T_h;
+		sub f b by f_b;
+		sub f f by f_f;
+		sub f h by f_h;
+		sub f i by f_i;
+		sub f j by f_j;
+		sub f k by f_k;
+		sub f l by f_l;
+		sub f t by f_t;
+} liga;
+
+
+#--------------------------------------
+feature dlig {
+lookup TA_LIGS_DSC {
+	sub taNna taAasign by taNnAa;
+	sub taAisign taNna by taNnAi;
+	sub taNnna taAasign by taNnnAa;
+	sub taAisign taNnna by taNnnAi;
+	sub taRra taAasign by taRrAa;
+	sub taAisign taLa by taLAi;
+	sub taAisign taLla by taLlAi;
+} TA_LIGS_DSC;
+} dlig;
+
+
+#--------------------------------------
+feature ss01 {
+lookup TA_LIGS_DSC;
+} ss01;
+
+
+#--------------------------------------
+feature ss02 {
+lookup TA_LIGS_DSC;
+lookup RA_ALT {
+	sub taRa' [taIsign taIisign taVirama] by taRa.a;
+} RA_ALT;
+} ss02;
+
+
+#--------------------------------------
+feature ss03 {
+lookup TA_LIGS_ALT {
+	sub taKI by taKI.a;
+	sub taCI by taCI.a;
+	sub taTI by taTI.a;
+} TA_LIGS_ALT;
+lookup TA_LIGS_DECOMPOSE {
+	sub taKIi by taKa taIisign;
+	sub taCIi by taCa taIisign;
+	sub taTIi by taTa taIisign;
+} TA_LIGS_DECOMPOSE;
+} ss03;
+
+
+#--------------------------------------
+feature ss04 {
+	sub taOo by taOo.a;
+} ss04;
+
+
+#--------------------------------------
+feature size {
+	parameters 11.0 0; # design size, subfamily
+} size;
+
